@@ -3,13 +3,14 @@ const router = express.Router();
 const Booking = require("../models/Booking");
 const Room = require("../models/Room");
 
-/**
- * POST /api/bookings
- * Đặt phòng
- */
+// ================== CREATE BOOKING ==================
 router.post("/", async (req, res) => {
   try {
     const { customerName, roomId, checkIn, checkOut } = req.body;
+
+    if (!customerName || !roomId || !checkIn || !checkOut) {
+      return res.status(400).json({ message: "Thiếu dữ liệu" });
+    }
 
     const room = await Room.findById(roomId);
     if (!room) {
@@ -31,21 +32,18 @@ router.post("/", async (req, res) => {
     await room.save();
 
     res.status(201).json(booking);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
-/**
- * GET /api/bookings
- * Lấy danh sách booking
- */
+// ================== GET BOOKINGS ==================
 router.get("/", async (req, res) => {
   try {
     const bookings = await Booking.find().populate("room");
     res.json(bookings);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
