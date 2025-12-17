@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Hotel booking backend project 2",
   "main": "src/app.js",
-  "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
-  },
   "author": "Van Thanh",
   "license": "ISC",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "seed": "node src/seed.js"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -20,11 +21,5 @@
   },
   "engines": {
     "node": ">=18"
-  },
-"scripts": {
-  "start": "node src/app.js",
-  "dev": "nodemon src/app.js",
-  "seed": "node src/seed.js"
-}
-
+  }
 }
